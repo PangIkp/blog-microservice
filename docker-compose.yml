@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  user-service:
+    build:
+      context: ./services/user-service
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./services/user-service:/app
+    working_dir: /app
+    command: npx ts-node-dev src/index.ts
+
+  noti-service:
+    build:
+      context: ./services/noti-service
+    ports:
+      - "4002:4002"
+    volumes:
+      - ./services/noti-service:/app
+    working_dir: /app
+    command: npx ts-node-dev src/index.ts
