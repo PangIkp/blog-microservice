@@ -19,7 +19,7 @@ app.register(swaggerUI, { routePrefix: '/docs' });
 
 // ลงทะเบียน cors ก่อน route อื่นๆ
 app.register(cors, {
-  origin: 'http://localhost:5173',   // หรือ * ถ้าต้องการอนุญาตทุกที่ (แนะนำเจาะจง)
+  origin: 'http://localhost:5173',   
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 });
 
