@@ -5,6 +5,7 @@ import swaggerUI from '@fastify/swagger-ui';
 import cors from '@fastify/cors';    
 import userRoutes from './routes/user';
 import authRoutes from './routes/auth';
+import postRoutes from './routes/post';  
 
 dotenv.config();
 const app = Fastify({ logger: true });
@@ -26,5 +27,6 @@ app.register(cors, {
 // ลงทะเบียน routes
 app.register(userRoutes);
 app.register(authRoutes, { prefix: '/auth' });
+app.register(postRoutes);
 
 app.listen({ port: Number(process.env.PORT) || 4001, host: '0.0.0.0' });

@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "linux-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -8,17 +8,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    String @id @default(cuid())
-  name  String
-  email String @unique
-  password String
-  role  Role   @default(USER)
-}
-
 enum Role {
   USER
   ADMIN
 }
 
+model User {
+  id       String  @id @default(cuid())
+  name     String
+  email    String  @unique
+  password String
+  role     Role    @default(USER)
+  posts    Post[] 
+}
 
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  imageUrl  String?     
+  category  String      
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+}
